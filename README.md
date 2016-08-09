@@ -22,7 +22,4 @@ Compile getarrs.pro and run. Please note you are not running getarr.pro, but get
 * tvscl, arr4
 
 This will give you the four sinograms. In a similar manner you can obtain the exposure maps.
-=======
-## Sinogram and Exposure Maps
-To create the sinograms and exposure maps you will need several IDL procedures and the data from the flight under consideration. The data from flight 1 can be found [Here]
 >>>>>>> origin/master
