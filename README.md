@@ -1,4 +1,5 @@
 # SPINR-MAST
+<<<<<<< HEAD
 ## Sinogram and Exposure
 To create the sinograms and exposure maps you will need several IDL procedures and the data from the flight under consideration. The data from flight 1 can be found [Here]. Flight 2 is [Here] and flight 3 [Here]. The procedures for flight 1 are [Here], flight 2 [Here], and flight 3 [Here]. All of the flights use [These] procedures as well.
 
@@ -21,3 +22,7 @@ Compile getarrs.pro and run. Please note you are not running getarr.pro, but get
 * tvscl, arr4
 
 This will give you the four sinograms. In a similar manner you can obtain the exposure maps.
+=======
+## Sinogram and Exposure Maps
+To create the sinograms and exposure maps you will need several IDL procedures and the data from the flight under consideration. The data from flight 1 can be found [Here]
+>>>>>>> origin/master
