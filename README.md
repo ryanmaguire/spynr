@@ -22,4 +22,4 @@ Compile getarrs.pro and run. Please note you are not running getarr.pro, but get
 
 This will give you the four sinograms. In a similar manner you can obtain the exposure maps.
 
-## Absolute Crap
+## Getting the Spectra
