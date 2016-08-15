@@ -1,3 +1,11 @@
+;Name:
+; wave2num.pro
+;
+;Purpose:
+; Function used for getarrs.pro to produce sinograms.
+;
+;Procedures called:
+; gettok.pro, wav2num.pro
 function getarr,detnum,low,high,y_min,y_max,full=full
 
 fn='det'+strtrim(string(detnum),2)+'.dat'
