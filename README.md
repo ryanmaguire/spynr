@@ -7,7 +7,6 @@ For brevity we will only show how to make the sinograms and exposure maps for th
 For convenience place the IDL procedures in a single folder with the data for flight 2, or ensure that the data and procedures are included in your path.
 You will need:
 
-* interpol.pro
 * gettok.pro
 * wav2num.pro
 * fold.pro
