@@ -1,0 +1,237 @@
+\documentclass[oneside]{book}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{a4paper, margin = 0.5in} % or letter or a5paper or ... etc
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{amsmath,esint}
+\usepackage{paracol}
+\renewcommand{\baselinestretch}{1.2}
+
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{remark}{Remark}[section]
+\newcommand*\B[1]{\mathbf{#1}}
+\numberwithin{equation}{section}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+\title{Notes for SPINR}
+
+\begin{document}
+\setcounter{section}{-1}
+\date{\vspace{-5ex}}
+\maketitle
+\tableofcontents
+
+\chapter{Chris' Thesis}
+
+\section{Abstract}
+
+Dust grain properties in the interstellar medium and an exoplanetary system were studied. Wide-field observations of the Orion OB stellar association were performed in the far-ultraviolet using SPINR (Spectrograph for Photometric Imaging with Numeric Reconstruction). The spectral-imaging data obtained were used along with a three-dimensional radiative transfer model to measure the grain albedo and the scattering asymmetry. A sharp increase in albedo was measured at $\sim 1330\textrm{\r{A}}$. This is not explained by current models. The constructed three-dimensional model includes a two-component dust distribution. The foreground being responsible for the slight reddening measured toward the bright stars in Orion, the background distribution representing the Orion Molecular Cloud that dominates dust emission in the infrared. The model was used to show that backscattered light from this cloud cannot produced the observed scattered light distribution by itself. This suggests that observations of Orion in the infrared and far-ultraviolet may probe different dust populations. The PICTURE (Planetary Imaging Concept Testbed Using a Rocket Experiment) sound rocket was developed to characterize dust grains in the $\epsilon-$Eridani explanetary system. This system has a Jupiter-massed planet orbiting at $\sim3.4$ AU. PICTURE sought to capture a direct, visible-light image of dust-scattered starlight using a high-contract nulling coronagraph. The mission returned no science data, but several technological advances were made to enable future direct imaging missions, such as demonstrating 5.1 milliarcsecond stability using a fast optical tracking system. 
+
+\section{Introduction}
+
+This dissertation attempts to answer the following questions:
+
+\begin{enumerate}
+\item What are the physical properties of dust grains in the Interstellar Medium (ISM)?
+\item What is the distribution and brightness of dust grains in exoplanetary systems?
+\end{enumerate}
+
+Interstellar dust grains play a vital role in the evolution of our galaxy. These grains form in the cool outer envelopes of giant evolved stars as well as in planetary nebulae, novae, and supernovae. They constitute the solid matter component of the interstellar medium and are composed of the heavy elements and compounds needed for life. Interstellar dust grains influence the chemical and physical evolution of the Galaxy through their interaction with ionizing and dissociative far-ultraviolet (FUV) radiation fields of massive stars. By absorbing this light, molecular gas-phase chemistry may proceed in the ISM unimpeded by destructive photons. Dust also limits how much FUV radiation may escape from the galaxy. 
+
+\subsection{Dust in the Interstellar Medium}
+
+\subsubsection{Observational Techniques}
+
+The observable consequences of the interaction between radiation and dust grains that will be studied here are absorption, scattering, and polarization. When a photon encounters a dust grain, it can either be absorbed or scattered. In either case, the photon will no longer reach its intended observer along an unimpeded path. This process of extinction is dependent on the wavelength and leaves a spectral imprint on the background source. This imprint can be used to deduce the chemical make-up of dust grains. The specific extinction $A_{\lambda}$ is written as:
+
+\begin{equation}
+A_{\lambda} = -2.5\log\big(\frac{I_{\lambda}}{I_{\lambda,0}}\big)
+\end{equation}
+Where $\frac{I_{\lambda}}{I_{\lambda,0}}$ is the fractional attenuation of the source intensity as it passes through the medium in question. The specific reddening excess quantifies the extinction at a specific wavelength relative to the visible band. It is written as:
+
+\begin{equation}
+E(\lambda-V)=A_{\lambda}-A_V
+\end{equation}
+
+Here, $E(\lambda-V)$ is the specific reddening excess. The name comes from the fact that extinction is generally more efficient at shorter wavelengths, causing objects to appear redder than the truly are. The B-to-V band reddening excess $E(B-V)$, also called the selective extinction, is used to quanify the amount of dust along the line of sight to a source. The quantity $\frac{E(\lambda-V)}{E(B-V)}$ is called the reddening curve. The ratio of absolute to selective extinction is:
+
+\begin{equation}
+R_V = \frac{A_V}{E(B-V)}
+\end{equation}
+
+The average value $R_V$ in the Milky Way is $R_V = 3.1$. It is believe that $R_V$ parametrizes the average grain size. Values of $R_V>3.1$ indicate larger-than-average dust grains and usually have flatter reddening curves. High values of $R_V$ are seen in molecular clouds and the photodissociation regions of hot stars. The extinction curve $A_{\lambda}$ quantifies the number of photons that are lost at a given wavelength from a background source because they are either absorbed or scattered out of the line of sight by foreground dust grains. It is possible that light from some source is scattered $into$ the observer's line of sight. The albedo and the phase function asymmetry determine the reflectivity and the preferred direction of scattering. These parameters are determined by the grain size and chemical composition of the dust. Measurements of scattered light thus contains the properties of dust. Observations in the far ultra-violet range are difficult due to strong spectral contamination from neutral and ionized Hydrogen, which is abundant in the galaxy. 
+
+\subsubsection{Introduction to Dust Scattering}
+
+Modern descriptions of electromagnetic interactions between photons and dust grains stem from the Mie theory of the early $20^{th}$ century. Mie theory forms a solution to Maxwell's equation for a radiation field constrained by the boundary conditions imposed by a set of small dielectric spheres. This is a simplified model for dust grains. The solution establishes the physical backbone for dust scattering and absorption. The emissivity of dust grains in the ultraviolet is negligible. We may write a simplified solution to the equation of radiative transfer for a radiation field passing through a sourceless medium.
+
+\begin{equation}
+I = I_0 e^{-\tau_{ext}}
+\end{equation}
+
+Here, $I$ is the propagation of the initial intensity $I_0$ through a medium of optical depth $\tau_{ext}$. It can be expressed as follows:
+
+\begin{equation}
+\tau_{ext} = \int n \sigma_{ext} ds
+\end{equation}
+
+Where $\sigma_{ext}$ is the extinction cross section, and $n$ is the density of the material. The extinction cross section is the sum of the absorption and scattering cross section:
+
+\begin{equation}
+\sigma_{ext} = \sigma_{abs}+\sigma_{sca}
+\end{equation}
+
+The physical cross section $A= \pi r^2$ can be obtained through the efficiency factor $Q$
+
+\begin{eqnarray}
+\sigma_{abs} &&= \pi r^2 Q_{abs} \\
+\sigma_{sca} &&= \pi r^2 Q_{abs} \\
+\sigma  &&= \pi r^2(Q_{abs}+Q_{sca})
+\end{eqnarray}
+
+The efficiencies are functions of the grain radius, wavelength of light, and the dielectric/conductive properties of the grain. The scattering efficiency $Q_{sca}$ relates nothing about the directionality of scattering.
+
+\begin{equation}
+Q_{sca} = \int \frac{d Q_{sca}}{d\Omega} d\Omega = \int \Phi d\Omega
+\end{equation}
+
+Here $\Phi$ is the phase function and relates the probability of scattering into a given angle. Thus, $Q_{sca}$ tells us nothing of the direction of scattering. The Single Scattering Albedo is:
+
+\begin{equation}
+a = \frac{Q_{sca}}{Q_{ext}}
+\end{equation}
+
+The Phase Function Asymmetry Parameter is:
+
+\begin{equation}
+g = \langle \cos(\theta) \rangle = \frac{\int \cos(\theta)\Phi d\Omega}{\int \Phi d\Omega}
+\end{equation}
+
+A theoretical form of $\Phi$ was proposed by Henyey \& Greenstein in 1941 for when the scattering is azimuthally symmetric about the incident photon direction $\theta$. It has the following form:
+
+\begin{equation}
+\Phi(g,\theta) = \frac{1}{4\pi} \frac{1-g^2}{(1+g^2-2g\cos(\theta))^{3/2}}
+\end{equation}
+
+There is a notable discrepancy between the measured and modeled albedos in the range $1300$ \r{A} to $1500$ \r{A}. The model predicts a continuous albedo drop-off as the wavelengths shorten, however the measured albedos seem to rise abruptly at $1500$ \r{A}. 
+
+\subsection{Dust in Planetary Systems}
+
+Dusty protoplanetary disks are formed first as the host star is still accreting mass. Disk evolution proceeds as small interstellar dust grains collide and adhere to one another creating larger cross-sections for interaction with the gas. EUV, FUV and X-Ray radiation from the host star photoevaporates the gaseous component of the disk and small dust grains are removed by radiation pressure and Poynting-Robertson drag. Larger grains (>$\mu$m), planetesimals, and planets remain and form planetary systems and debris disks. 
+
+\subsubsection{Observational Techniques}
+
+Planetary debris disks and exozodiacal grains undergo radiative heating from their host stars and produce excess emission relative to the stellar spectrum that can be measured between mid-infrared and submillimeter. Cold outer debris (<30K) have also been directly imaged in the far-infrared and submillimeter range. To directly image exozodiacal dust ~10 AU from its host star requires high resolution imaging and advanced coronagraphic techniques. 
+
+\subsubsection{Previous Measurements of Exozodialca Dust and Debris Disks}
+
+Infrared excess due to emission from debris disks was first measured for Vega in 1984. Vega has long stood as a widely adopted photometric and spectral calibration standard, and was once defined as the zero-point of the stellar magnitude system. The observed spectrum is dominated by dust emission in the far-infrared and exceeds the underlying stellar spectrum by a factor of ~16 at 100 $\mu$m. Further measurements displayed sub-structures in the debris disk of Vega. 
+
+\subsection{Two Dusty Laboratories}
+
+Two astronomical systems are studied: The Orion OB Association/Orion Molecular Cloud, and the $\epsilon$-Eridani exoplanetary system. $\epsilon$-Eridani is $3.2$ pc away from the sun, making it one of the closest exoplanetary systems. 
+
+\subsubsection{The Orion Molecular Cloud and OB Association}
+
+The Orion Molecular Cloud Complex is 450 pc from the sun in the Galactic anti-center direction. It is $15^{\circ}$ below the Galactic plane along a sightline with very low foreground extinction and very little contamination from Galactic plane molecular gas. There is a large population of massive O and B stars, the Orion OB Stellar Association. The Orion Molecular Cloud offers a clear, up-close view of the interaction between massive stars and the interstellar medium. 
+
+\subsubsection{The $\epsilon$-Eridani Exoplanetary System}
+
+Epsilon Eridani is a sun-like K2V star located 3.2 pc from Earth. It is 0.83 solar masses and has at least one extrasolar giant planet orbiting it. The system is less than a billion years and exhibits a strong photospheric activity as is expected for a young star. The system contains a well characterized debris disk at 60 AU. Infrared excess that has been observed has been used to infer the existence of warm dust belts at 3 AU and 20 AU. 
+
+\subsection{Observations}
+
+A refinement of the questions posed is given:
+
+\begin{enumerate}
+\item What are the FUV scattering properties (a,g) of dust grains along the line of sight to the Orion OB association and background OMC?
+\item What is the morphology and visible-light brightness of exozodiacal dust in the $\epsilon$-Eridani system?
+\end{enumerate}
+
+To detect diffuse FUV scattered light towards Orion, observations must be made from space. This form of light cannot penetrate the Earth's atmosphere, and thus ground based observations are impossible. Previous missions, such as GALEX and FUSE, are too sensitive to points towards extremely bright stars such as those in the Orion OB Association. A wide-field, low sensitivity, space-based instrument is required to make these observations. 
+
+\subsubsection{SPINR}
+
+The Spectrograph for Photometric Imaging with Numeric Reconstruction (SPINR) sounding rocket was launched on February, $19^{th}$ 1999. It recorded spectral imaging data in the FUV over a region of sky containing the entire Orion constellation. 
+
+\subsubsection{PICTURE}
+
+The Planetary Imaging Concept Testbed Using a Rocket Experiment (PiCTURE) sounding rocket was launched on October, $8^{th}$ 2011. It attempted to directly image the exozodiacal dust disk of $\epsilon$-Eridani down to an inner radius of 1.5 AU using a visible Nulling Coronagraph to attenuate the signal of the bright host star. The main science telemetry transmitter on the payload failed ~70 seconds after launch and all science data was lost.
+
+\section{SPINR: Observations and Data Reduction}
+
+SPINR (The Spectrograph for Photometric Imaging with Numeric Reconstruction) was developed to characterize the interaction between far-ultraviolet radiation and dust grains in the interstellar medium. In particular, the Orion OB association and the Orion Molecular Cloud were study. 
+
+\subsection{SPINR Instrument Description}
+
+SPINR contains four identical tomographic extreme-ultraviolet spectrographs (TESSs) that provides imaging in the far-ultraviolet. SPINR achieves high FUV efficiency through the use of a single toroidal diffraction grating. This grating optically compresses the image of the sky in one direction to a single column, forming a spectral element that is then dispersed across the detector. To recover the compressed spatial dimension from the sky, the instrument is rotated about its optical axis and counts from the sky, with coordinates $(x_{sky},y_{sky},\lambda_{sky})$ are mapped into detector coordinates $(x_{det},y_{det},\lambda_{det})$. The spectral range is $750-1450$\r{A} with a $5$\r{A} spectral resolution and a $5'$ spatial resolution.
+
+\subsection{Orion Observation}
+
+SPINR was launched $02/19/199$ and collected $327.3$ seconds worth of data above $100 km$ while rolling at a period of $100$ seconds $(0.6$ rpm$)$ about a central pointing of $(l,b)=(206.650,-18.277)$ (Galactic Coordinate System), completing about $3\frac{1}{4}$ rotations in the process. 
+
+\subsection{Wavelength Calibration}
+
+The detectors record photon counts over a square $1024\times 1024$ grid of pixels. Detector readout distortions and slit curvature induced by the concave diffraction grating causes the wavelength of light at a point on the detector to be a function of $x_{det}$ and $y_{det}$ called the wavelength calibration function $\lambda(x_{det},y_{det})$. To determine this function, bright telluric emission lines from the Earth's geocoronal region are mapped across the detector surface.
+
+\subsection{Extracting Sinograms}
+
+Sinograms are two-dimensional maps of the data, $(t_{det},y_{det})$, which are produced from the data cube $(x_{det},y_{det},t_{det})$ by summing over the wavelength (The $x-$axis) for some range of wavelength. These maps have the same information as a broadband image of the sky. For the experiment, four different regions are considered for the purpose of creating sinograms. They are (In Angstroms) Background (760-810), Short (920-1000), Mid (1040-1125), Long (1280-1400). The effective wavelength is defined as
+
+\begin{equation}
+\nonumber \lambda_{eff} = \frac{\underset{\Delta \lambda}\sum \lambda C_{\lambda}}{\underset{\Delta \lambda}\sum C_{\lambda}}
+\end{equation}
+Where $C_{\lambda}$ is the total number of counts on the detector in the $\lambda$ wavelength bin. Background, short, mid, and long have effect wavelengths of $785,\ 971,\ 1090,$ and $1330$ Angstroms, respectively. These bands are chosen to avoid bright Lyman-$\alpha$ $(1216$ \r{A}$)$ and Lyman-$\beta$ $(1025$ \r{A}$)$ telluric emission lines. The background band is the region in which detector background from dark counts and grating-scattered photons occur. This covers a dark area of the detector shortward of the Lyman limit $(912$ \r{A}$)$. The sinograms are created by selecting the data corresponding to these regions on the detector and summing over the $x-$axis, wrapped on a $100$ second roll period in the $t_{det}$ axis and binned by a factor of $8$ in the $y_{det}$ axis to produce $\cong 6'$ pixels that efficiently sample the $\cong 5'$ spatial resolution of the instrument. This makes the sinogram $200$ temporal bins by $128$ spatial bins. The $0.5$ second time bins are equivalent to roll angle bins with $1.8^{\circ}$ resolution. 
+
+\subsection{Building the SPINR Instrument Response Function}
+
+The goal is to get back to the observed scene on the sky. The 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

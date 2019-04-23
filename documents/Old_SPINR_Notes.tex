@@ -1,0 +1,177 @@
+\documentclass[10pt]{article}
+\usepackage{geometry} % see geometry.pdf on how to lay out the page. There's lots.
+\geometry{a4paper, margin = 0.5in} % or letter or a5paper or ... etc
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{amsmath,esint}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{paracol}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{multicol}
+\let\olddiv\div
+\usepackage{physics}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{properties}{Properties}[section]
+\newtheorem{notation}{Notation}[section]
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{property}{Property}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\multideg}{mutlideg}
+\DeclareMathOperator{\LC}{LC}
+\DeclareMathOperator{\LT}{LT}
+\DeclareMathOperator{\LM}{LM}
+\DeclareMathOperator{\LCM}{LCM}
+\DeclareMathOperator{\Mon}{Mon}
+\DeclareMathOperator{\Spec}{Spec}
+\newcommand{\slant}[2]{{\raisebox{.1em}{$#1$}\left/\raisebox{-.1em}{$#2$}\right.}}
+\newcommand*\kx{k[x_1,\hdots ,x_n]}
+\newcommand*\kxr{k(x_1,\hdots ,x_n)}
+\newcommand*\B[1]{\mathbf{#1}}
+\newcommand*\Bh[1]{\mathbf{\hat{#1}}}
+\newcommand*\vf{\textbf{V}(f_1,\hdots, f_s)}
+\newcommand*\vg{\textbf{V}(g_1,\hdots, g_t)}
+\newcommand*\Monx{\Mon_{R}(x_1,\hdots, x_n)}
+
+\title{SPINR}
+\author{Notes by Ryan Maguire}
+\date{\vspace{-5ex}}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Chris' Thesis}
+\subsection{Introduction}
+This details efforts to characterize dust grains in the interstellar medium (ISM) and exoplanetary systems. We wish to know what are the physical properties of dust grains in the ISM and what is the distribution and brightness of dust grains in exoplanetary systems. Interstellar dust grains play a key role in the evolution of our galaxy, and constitute the solid matter of the ISM. They also are composed of the heavy elements necessary to form terrestrial planets and life. Dust grains also absorb far-ultraviolet (FUV) radiation which allows molecular gas-phase chemistry to occur in the ISM. This also acts as a shield to the colder dense cores of interstellar clouds from radiation, allowing for the formation of galaxy. Dust also obscures observations, as all astronomical objects are viewed through some amount of dust. Much of the galactic plane, including the galactic center, is completely obscured by dust. The physical properties of dust grains: Chemical composition, size distribution, shape, spatial distribution, and temperature, influence the many observational characteristics of dust. 
+\subsubsection*{Dust in the Interstellar Medium}
+There are many techniques for studying the dust grains of the ISM. Deposition can be indirectly measured by comparing the gas phase depletion of heavy elements in interstellar clouds with the abundances measured in nearby stars. Dust grains can be studied directly by measuring their influence on the radiation fields of distant sources. There are three particular observational consequences to consider: Absorption, scattering, and polarization. When a photon encounters a dust grain, it can either be absorbed or scattered. In either case, the photon will not reach its original destination. This process of extinction is wavelength dependent and leaves a spectral imprint on the background source after the selective removal of specific wavelengths. The specific extinction $A_{\lambda}$ is:
+\begin{equation}
+A_{\lambda} = -2.5\ln\big(\frac{I_{\lambda}}{I_{\lambda,0}}\big)
+\end{equation}
+Where $\frac{I_\lambda}{I_{\lambda,0}}$ is the fractional attenuation of the source intensity as it passes through an absorptive or scattering medium. The specific reddening is:
+\begin{equation}
+E(\lambda - V) = A_{\lambda} - A_{V}
+\end{equation}
+This quantifies the extinction at a specific wavelength relative to the visible band. Selective extinction, $E(B-V)$, is used to quantify the amount of dust along the line of sight to a source. $R_V$ is the ratio of absolute to selective extinction:
+\begin{equation}
+R_V = \frac{A_V}{E(B-V)}
+\end{equation}
+For the milky way, the average is $R_V = 3.1$. This value is believed to parametrize the average grain size. The extinction curve $A_{\lambda}$ quantifies the number of photons that are lost at a given wavelength from a background source due to either absorption or scattering of light by foreground dust grains. The albedo and the phase function asymmetry, denoted $\mathfrak{a}$ and $\mathfrak{g}$, respectively, determine the reflectivity and preferred direction of scattering. They are determined by the grain size and composition, and influence the distribution of scattered light within a dust cloud. Measurements of such light can thus contrain the physical properties of dust grains. 
+\subsubsection*{Introduction to Dust Scattering}
+Modern descriptions of the electromagnetic interaction between photons and dust grains are rooted in the Mie theory, formed by Mie in 1908 and independently by Debye in 1909. Mie theory proposes solutions to Maxwell's equations for a radiation field constrained by the boundary conditions imposed by a set of small dielectric spheres. The emissivity of dust grains in the ultraviolet is negligible, and thus we may write a simplified solution to the radiative transfer equation for a radiation field passing through a sourceless medium as:
+\begin{equation}
+I = I_0 e^{-\tau_{ext}}
+\end{equation}
+Where $I$ is the propagation of the initial intensity $I_0$ through a medium of optical depth $\tau_{ext}$. If $S$ is the optical path, $\sigma_{ext}$ is the extinction cross section, and $n$ is the density of the material, then we have:
+\begin{equation}
+\tau_{ext} = \int_{S} n \sigma_{ext} d\ell
+\end{equation}
+If $\sigma_{abs}$ and $\sigma_{sca}$ are the absorption and scattering cross sections, and if $Q_{abs}$ and $Q_{sca}$ are the efficiency factors, then:
+\begin{align}
+\sigma_{abs} &= \pi r^2 Q_{abs} & \sigma_{sca} &= \pi r^2 Q_{sca} & \sigma_{ext} &= \sigma_{abs}+\sigma_{sca}
+\end{align}
+The scattering efficiency $Q_{sca}$ can be determined by the scattering phase function $\Phi$:
+\begin{equation}
+Q_{sca} = \int \frac{dQ_{sca}}{d\Omega}d\Omega = \int \Phi d\Omega
+\end{equation}
+The albedo $\mathfrak{a}$ is:
+\begin{equation}
+\mathfrak{a} = \frac{Q_{sca}}{Q_{ext}}
+\end{equation}
+The phase function asymmetry parameter $\mathfrak{g}$ is:
+\begin{equation}
+\mathfrak{g} = \langle \cos(\theta)\rangle = \frac{\int \cos(\theta)\Phi d\Omega}{\int \Phi d\Omega}
+\end{equation}
+Henyey and Greenstein proposed a theoretical form for the scattering phase function in 1941.
+\begin{equation}
+\Phi(\mathfrak{g},\theta) = \frac{1}{4\pi} \frac{1-\mathfrak{g}^2}{1+\mathfrak{g}^2-2\mathfrak{g}\cos(\theta)}
+\end{equation}
+\subsubsection*{Dust in Planetary Systems}
+
+Dust can be observed in numerous settings as planetary systems form and evolve. Dusty protoplanetary dicks are formed first as the host star is still accreting mass. Small interstellar dust grains collide and adhere to one another creating larger cross-sections for interaction with the gas, which comprises 99\% of the disk mass in the earlier stages. Increased drag acts to decouple the grains from the motion of the gas. Extreme-ultraviolet (EUV), FUV, and X-Ray photons form the host start evaporates the gas in the disk and smaller dust grains are removed by radiation pressure and Poynting-Robertson drag. The time from initial formation to the debris disc state is typically 3 million years for solar type stars, and even shorter time scales for high mass stars. We concentrate on exozodiacal and interstellar dust grains. The chemical composition of these are directly linked to the larger bodies in the system. Spatial and size distributions tell us about the evolution of such systems as well. Planetary debris disks and exozodiacal grains undergo radiative heating from their host stars and produce excess emission relative to the stellar spectrum that can be measured at various wavelengths. Sensitive infrared telescopes (Spitzer, IRAS, Herschel) have been able to probe warm ($>$100 K) dust grains within a few AU of their host stars. Far-infrared and submillimeter observations have probed colder dust grains ($<$30 K). In the outer regions, larger icy bodies exist whereas emission measurements can only probe smaller grains $\sim 3\lambda$ in radius. To directly image dust within 10 AU requires high resolution imaging and advanced coronagraphic techniques to suppress the glare of the host star. Diffraction in the optics of a telescope spreads out the light from a star over an area hundreds of times larger than the angular extent of the stellar disk. 
+\subsubsection*{The Orion Molecular Cloud and AB Association}
+Orion lies 450 pc from the sun in the Galactic anti-center direction, $15^{\circ}$ below the Galactic plane. The line of sight contains very low foreground extinction and very little contamination from molecular gas associated with the galactic plane. This molecular cloud has formed massive O and B stars called the Orion OB Association and over the past 12 million years ionizing UV radition from these stars and strong stellar winds and supernovae explosions have acted to shape the clouds. The three-dimensional distribution of the gas, dust, and stars have been characterized with more detail over the past 50 years. 
+\subsubsection*{The $\epsilon-$Eridani Exoplanetary System}
+Epsilon Eridani is a sun-like K2V star located 3.2 pc from Earth at 0.83 solar masses. There is at least one extrasolar giant planet orbiting this star, $\epsilon$ Eri b, which was discovered using the radial velocity technique. This was the closest known exoplanetary system until the discovery of an Earth-like planet orbiting $\alpha$ Centauri B. Epsilon Eradani is less than 1 billion years old, and exhibits strong photospheric activity, as expected from a young star. The orbiting planet is 1.55 Jupiter masses, has a 6.9 year period, and its orbit is very eccentric ($e=0.7$). The Epsilon Eridani system also contains a debris disk at 60 AU. Observed infrared excess in the stellar spectrum has been used to infer the existence of two warm dust belts at 3 AU and 20 AU. 
+\subsubsection*{Observations}
+We now have two questions:
+\begin{enumerate}
+	\item What are the FUV scattering properties ($\mathfrak{a},\mathfrak{g}$) of dust grains along the line of sight to the Orion OB association and background OMC?
+	\item What is the morphology and visible-light brightness of exozodiacal dust in the $\epsilon-$Eridani system?
+\end{enumerate}
+To detect diffuse FUV scattered light from Orion observations must be made from space. FUV light has a large interaction cross section making it ideal for probing interstellar dust grains, but cannot penetrate the Earth's atmosphere (Which is a good thing for humans, bad thing for UV-astronomy). Previous FUV missions like GALEX and FUSE are too sensitive to point towards extremely bright stars like those found in the Orion OB Association. To make such observations a wide-field, lower sensitivity, space based instrument is needed. To directly image the inner $10$ AU of the $\epsilon$ Eridani system a high-contrast coronagraph must be used to attenuate the overwhelming glare of the parent star.
+\subsubsection*{SPINR}
+The SPINR (Spectrograph for Photometric Imaging with Numeric Reconstruction) sounding rocket was launched on February $19^{th}$, 1999 and recorded spectral imaging data in the FUV (750-1450 \AA).
+\subsubsection*{PICTURE}
+The Planetary Imaging Concept Testbed Using a Rocket Experiment (PICTURE) sounding rocket was launched on October $8^{th}$, 2011. It attempted to directly image the exozodiacal dust dick of $\epsilon-$Eridani (K2V,3.22 pc) down to an inner radius of 1.5 AU using a visible Nulling Coronograph to attenuate the signal of the bright host star. The main science telemetry transmitter of the payload failed about 70 seconds after launch and all science data was lost. 
+\subsection{SPINR}
+SPINR was developed to characterize the interaction between FUV radiation and dust grains in the ISM via wide-field spectral imaging observations of FUV dust scattering in nearby systems. The target was the Orion OB Association and background Orion Molecular Cloud, which subtends $200 \deg^2$ in the sky, an area roughly 32 lunar diameters in extent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
