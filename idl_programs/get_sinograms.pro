@@ -1,16 +1,16 @@
-;**************************************************************************************************************************
-;Name:                                                                                                                    ;
-; Get_Sinograms.pro                                                                                                       ;
-;                                                                                                                         ;
-;Purpose:                                                                                                                 ;
-; To create the exposure maps and sinograms of the SPINR data.                                                            ;
-;                                                                                                                         ;
-;Procedures Called:                                                                                                       ;
-; getarr.pro, fold.pro                                                                                                    ;
-;**************************************************************************************************************************
-;*******************************************************User Inputs********************************************************
-Flight               = 'Flight3'                              ;The flight for which sinograms will be created.            ;
-;**************************************************************************************************************************
+;*******************************************************************************
+;Name:                                                                         ;
+; Get_Sinograms.pro                                                            ;
+;                                                                              ;
+;Purpose:                                                                      ;
+; To create the exposure maps and sinograms of the SPINR data.                 ;
+;                                                                              ;
+;Procedures Called:                                                            ;
+; getarr.pro, fold.pro                                                         ;
+;*******************************************************************************
+;*******************************User Inputs*************************************
+Flight = 'Flight3'  ;flight for which sinograms will be created.               ;
+;*******************************************************************************
 dir                  = '../Data/'+Flight+'/'
 
 if Flight ne 'Flight2' and Flight ne 'Flight3' then begin
@@ -46,24 +46,24 @@ endif
 
 ;Detector 2
     ;Long Data
-        arr       = fold(getarr(dir,2,1235,2000,y_min2,y_max2),2518,5749,500,expose)
-        sino      = coadd(arr/expose,200,128)
-        sinogram  = reform(sino,25600)
+        arr = fold(getarr(dir,2,1235,2000,y_min2,y_max2),2518,5749,500,expose)
+        sino = coadd(arr/expose,200,128)
+        sinogram = reform(sino,25600)
         save, arr, expose, sino, sinogram, filename = 'array_data_long2_'+Flight+'.sav'
     ;Mid Data
-        arr       = fold(getarr(dir,2,1030,1200,y_min2,y_max2),2518,5749,500,expose)
-        sino      = coadd(arr/expose,200,128)
-        sinogram  = reform(sino,25600)
+        arr = fold(getarr(dir,2,1030,1200,y_min2,y_max2),2518,5749,500,expose)
+        sino = coadd(arr/expose,200,128)
+        sinogram = reform(sino,25600)
         save, arr, expose, sino, sinogram, filename = 'array_data_mid2_'+Flight+'.sav'
     ;Short Data
-        arr       = fold(getarr(dir,2,912,1029,y_min2,y_max2),2518,5749,500,expose)
-        sino      = coadd(arr/expose,200,128)
+        arr = fold(getarr(dir,2,912,1029,y_min2,y_max2),2518,5749,500,expose)
+        sino = coadd(arr/expose,200,128)
         sinogram  = reform(sino,25600)
         save, arr, expose, sino, sinogram, filename = 'array_data_short2_'+Flight+'.sav'     
     ;Background Data
-        arr       = fold(getarr(dir,2,0,900,y_min2,y_max2),2518,5749,500,expose)
-        sino      = coadd(arr/expose,200,128)
-        sinogram  = reform(sino,25600)
+        arr = fold(getarr(dir,2,0,900,y_min2,y_max2),2518,5749,500,expose)
+        sino = coadd(arr/expose,200,128)
+        sinogram = reform(sino,25600)
         save, arr, expose, sino, sinogram, filename = 'array_data_Background2_'+Flight+'.sav'
 
 ;Detector 3

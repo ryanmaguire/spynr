@@ -44,17 +44,22 @@
 ;       Created: RJM - 2018/05/22 2:14 P.M.                         ;
 ;-------------------------------------------------------------------;
 FUNCTION make_sinograms,DAT,XDIM,YDIM,L,R,SINOGRAM=SINOGRAM
-ON_ERROR,2
-IF TYPE(DAT) NE TYPE("Hi!") THEN MESSAGE, "DAT must be a string."
-ermes = "must be a positive integer."
-IF ~check_pos_real(XDIM) THEN MESSAGE, "XDIM "+ermes
-IF ~check_pos_real(YDIM) THEN MESSAGE, "YDIM "+ermes
-XDIM = LONG(XDIM)
-YDIM = LONG(YDIM)
-;   Extract the sinograms from the raw data set.
-arr  = fold(getarr(dir,n,L,R),2518,5749,0,expose)
-;   Coadd the raw sinogram into one that is XDIMxYDIM in size.
-SINO = coadd(arr/expose,xdim,ydim)
-;   If the SINOGRAM keyword is set, reform into a vector.
-IF KEYWORD_SET(SINOGRAM) THEN SINOGRAM=REFORM(sino,xdim*ydim)
-RETURN, SINO
+    ON_ERROR,2
+
+    IF TYPE(DAT) NE TYPE("Hi!") THEN MESSAGE, "DAT must be a string."
+    ermes = "must be a positive integer."
+    IF ~check_pos_real(XDIM) THEN MESSAGE, "XDIM "+ermes
+    IF ~check_pos_real(YDIM) THEN MESSAGE, "YDIM "+ermes
+    XDIM = LONG(XDIM)
+    YDIM = LONG(YDIM)
+
+    ; Extract the sinograms from the raw data set.
+    arr  = fold(getarr(dir,n,L,R),2518,5749,0,expose)
+
+    ; Coadd the raw sinogram into one that is XDIMxYDIM in size.
+    SINO = coadd(arr/expose,xdim,ydim)
+
+    ; If the SINOGRAM keyword is set, reform into a vector.
+    IF KEYWORD_SET(SINOGRAM) THEN SINOGRAM=REFORM(sino,xdim*ydim)
+    RETURN, SINO
+END
