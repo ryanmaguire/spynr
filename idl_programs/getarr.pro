@@ -6,13 +6,12 @@
 ;
 ;    Function:   Function used by getarrays.pro for constructing sinograms.
 ;
-;**********************************************************************************
-
+;*******************************************************************************
 function getarr,dir,detnum,low,high,y_min,y_max,full=full
 
-fn  =dir+'det'+strtrim(string(detnum),2)+'.dat'
+fn = dir+'det'+strtrim(string(detnum),2)+'.dat'
 spawn,'wc -c '+fn,tmp
-num =long(gettok(tmp(0),' '))
+num = long(gettok(tmp(0),' '))
 if keyword_set(full) then arr=lonarr(6200,1024) else arr=lonarr(6200,256)
 n_events=num/6
 
