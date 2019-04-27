@@ -46,9 +46,9 @@ case detnum of
       if ((tmp(0) ge wave2num(dir,detnum,high,tmp(1))) and (tmp(0) le wave2num(dir,detnum,low,tmp(1))) and $
                                                    (tmp(0) gt 0) and (tmp(0) lt 1023) and $
                                                    (tmp(1) gt 0) and (tmp(1) lt 1023)) then begin
-    if keyword_set(full) then          $
+    if keyword_set(full) then  $
          y=0>((tmp(1)))<1023   $
-       else                            $
+       else                    $
          y=0>((tmp(1))/4.)<255
        arr(tmp(2),y)=arr(tmp(2),y)+1
       endif
